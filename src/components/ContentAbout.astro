@@ -1,68 +1,80 @@
 ---
 import { Code } from "astro:components";
 
-const code = `interface Developer {
-    name: string;
-    skills: string[];
-    interests: string[];
-};
+const code = `interface DeveloperConfig {
+    techStack: {
+        [category: string]: string[];
+    };
+    softSkills: string[];
+    openToWork: boolean;
+}
 
-interface TechStack {
-    devOps: string[];
-    backend: string[];
-   frontend: string[];
-};
+const javierAndreu: DeveloperConfig = {
 
-type ContactType = 'github' | 'linkedIn' | 'email';
+    techStack: {
 
-const techStack: TechStack = {
-    devOps: [
-        'GitHub',
-        'Vercel',
+        frontendFrameworks: [
+            "React.js",
+            "Next.js",
+            "Astro.js",
+        ],
+
+        styling: [
+            "Tailwind CSS",
+            "CSS Modules",
+            "Styled-Components",
+            "SASS/SCSS",
+            "Bootstrap",
+        ],
+
+        stateManagement: [
+            "Redux Toolkit",
+            "Zustand",
+            "Context API",
+        ],
+        
+        backendTechnologies: [
+            "Node.js",
+            "Express.js",
+            "Prisma",
+            "Supabase",
+            "MySQL"
+        ],
+
+        testingTools: [
+            "Jest",
+            "React Testing Library",
+            "Storybook"
+        ],
+        
+        devopsTools: [
+            "Git",
+            "GitHub Actions",
+            "Vercel"
+        ],
+
+        performanceTools: [
+            "Lighthouse",
+            "Chrome DevTools",
+            "React Profiler"
+        ]
+    },
+
+    softSkills: [
+        "Agile Methodology",
+        "Team Collaboration",
+        "Problem-Solving",
+        "Quick Learning",
+        "Communication",
+        "Adaptability"
     ],
-    frontend: [
-        'React',
-        'JavaScript',
-        'TypeScript',
-        'TailwindCSS',
-        'Bootstrap',
-        'Sass/SCSS',
-        'Next.js',
-        'Astro',
-        'WordPress'
-    ],
-    backend: [
-        'Supabase',
-        'Node.js',
-        'Express',
-        'Prisma',
-        'MySQL',
-    ]
-};
 
-// Developer profile
-const me: Developer = {
-    name: 'Javier Andreu',
-    skills: [
-        ...techStack.devOps,
-        ...techStack.backend,
-        ...techStack.frontend
-    ],
-    interests: [
-        'Open Source',
-        'Web Development',
-        'Design',
-        'UX/UI',
-        'Accessibility',
-        'SEO',
-        'Game Development',
-        'Performance',
-        'Self-Hosting',
-        'Networking',
-    ]
+    openToWork: true
 };
 
 // Contact function
+type ContactType = 'github' | 'linkedIn' | 'email';
+
 const contact = (type: ContactType): string => {
     switch (type) {
         case 'github':
@@ -76,6 +88,11 @@ const contact = (type: ContactType): string => {
     }
 };
 
+// Career Objectives
+const careerObjective = \`Seeking an opportunity to leverage my technical skills 
+and passion for creating innovative web solutions in a dynamic, 
+growth-oriented frontend development role. Committed to continuous 
+learning and delivering high-quality, user-centric applications.\`;
 `;
 ---
 

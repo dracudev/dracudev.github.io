@@ -1,0 +1,105 @@
+---
+import { Code } from "astro:components";
+
+const code = `interface Developer {
+    name: string;
+    skills: string[];
+    interests: string[];
+};
+
+interface TechStack {
+    devOps: string[];
+    backend: string[];
+   frontend: string[];
+};
+
+type ContactType = 'github' | 'linkedIn' | 'email';
+
+const techStack: TechStack = {
+    devOps: [
+        'GitHub',
+        'Vercel',
+    ],
+    frontend: [
+        'React',
+        'JavaScript',
+        'TypeScript',
+        'TailwindCSS',
+        'Bootstrap',
+        'Sass/SCSS',
+        'Next.js',
+        'Astro',
+        'WordPress'
+    ],
+    backend: [
+        'Supabase',
+        'Node.js',
+        'Express',
+        'Prisma',
+        'MySQL',
+    ]
+};
+
+// Developer profile
+const me: Developer = {
+    name: 'Javier Andreu',
+    skills: [
+        ...techStack.devOps,
+        ...techStack.backend,
+        ...techStack.frontend
+    ],
+    interests: [
+        'Open Source',
+        'Web Development',
+        'Design',
+        'UX/UI',
+        'Accessibility',
+        'SEO',
+        'Game Development',
+        'Performance',
+        'Self-Hosting',
+        'Networking',
+    ]
+};
+
+// Contact function
+const contact = (type: ContactType): string => {
+    switch (type) {
+        case 'github':
+            return 'https://github.com/dracudev';
+        case 'linkedIn':
+            return 'https://www.linkedin.com/in/javier-andreu-peralta/';
+        case 'email':
+            return 'andreujavier99@gmail.com';
+        default:
+            return 'Invalid contact type';
+    }
+};
+
+`;
+---
+
+<Code code={code} lang="js" wrap={true} />
+
+<style is:global>
+  /* Custom styling for code block line numbers */
+  pre.astro-code {
+    @apply bg-transparent !important;
+  }
+
+  pre.astro-code code {
+    @apply block;
+    counter-reset: step;
+    counter-increment: step 0;
+  }
+
+  pre.astro-code code .line {
+    @apply relative;
+  }
+
+  pre.astro-code code .line::before {
+    content: counter(step);
+    counter-increment: step;
+    @apply text-gray-600 pr-2;
+  }
+</style>

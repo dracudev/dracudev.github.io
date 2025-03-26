@@ -7,6 +7,8 @@ import Contact from "../components/Contact.astro";
 import ContentLink from "../components/ContentLink.astro";
 import ContentCode from "../components/ContentAbout.astro";
 import ContentProjects from "../components/ContentProjects.astro";
+import ContentEducation from "../components/ContentEducation.astro";
+import ContentExperience from "../components/ContentExperience.astro";
 ---
 
 <Layout>
@@ -34,11 +36,19 @@ import ContentProjects from "../components/ContentProjects.astro";
 
           <input type="radio" id="tab2" name="tabs" class="tab-radio" />
 
+          <input type="radio" id="tab3" name="tabs" class="tab-radio" />
+
+          <input type="radio" id="tab4" name="tabs" class="tab-radio" />
+
           <!-- Start: Tab bar -->
           <div class="flex bg-black border-b border-gray-600 sticky top-0 z-10">
             <ContentLink contentId="tab1" contentName="about.ts" />
 
             <ContentLink contentId="tab2" contentName="projects.md" />
+
+            <ContentLink contentId="tab3" contentName="education.json" />
+
+            <ContentLink contentId="tab4" contentName="experience.css" />
           </div>
           <!-- End: Tab bar -->
 
@@ -55,6 +65,18 @@ import ContentProjects from "../components/ContentProjects.astro";
               <ContentProjects />
             </div>
             <!-- End: Projects content -->
+
+            <!-- Start: Education content -->
+            <div id="content3" class="tab-content">
+              <ContentEducation />
+            </div>
+            <!-- End: Education content -->
+
+            <!-- Start: Experience content -->
+            <div id="content4" class="tab-content">
+              <ContentExperience />
+            </div>
+            <!-- End: Experience content -->
           </div>
           <!-- End: Tab content -->
         </div>
@@ -99,6 +121,24 @@ import ContentProjects from "../components/ContentProjects.astro";
   }
 
   #tab2:checked ~ .flex .tab-link:nth-child(2) {
+    @apply border-b-2 border-b-primary;
+  }
+
+  /* When tab3 is checked, show content3 and highlight its tab */
+  #tab3:checked ~ * #content3 {
+    @apply block opacity-100;
+  }
+
+  #tab3:checked ~ .flex .tab-link:nth-child(3) {
+    @apply border-b-2 border-b-primary;
+  }
+
+  /* When tab4 is checked, show content4 and highlight its tab */
+  #tab4:checked ~ * #content4 {
+    @apply block opacity-100;
+  }
+
+  #tab4:checked ~ .flex .tab-link:nth-child(4) {
     @apply border-b-2 border-b-primary;
   }
 </style>

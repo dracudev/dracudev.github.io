@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   output: "static",
   trailingSlash: "always",
-  site: "https://dracu.dev",
+  site: "https://www.dracu.dev",
 
   // Single page, no prefetch needed
   prefetch: false,

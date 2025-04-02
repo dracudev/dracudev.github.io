@@ -2,7 +2,7 @@
 import SocialIcon from "./SocialIcon.astro";
 
 interface Social {
-  icon: "github" | "linkedIn" | "email";
+  icon: "github" | "linkedIn" | "email" | "download";
   link: string;
   title?: string;
 }
@@ -23,6 +23,11 @@ const socials: Social[] = [
     link: "mailto:andreujavier99@gmail.com",
     title: "Send Email",
   },
+  {
+    icon: "download",
+    link: "/cv-dracudev.pdf",
+    title: "Download CV",
+  },
 ];
 ---
 
@@ -32,9 +37,12 @@ const socials: Social[] = [
     socials.map((social) => (
       <a
         href={social.link}
-        target="_blank"
+        target={social.icon === "download" ? "_self" : "_blank"}
         title={social.title}
-        rel="noopener noreferrer"
+        rel={social.icon === "download" ? undefined : "noopener noreferrer"}
+        download={
+          social.icon === "download" ? "Javier_Andreu_CV.pdf" : undefined
+        }
         class="flex items-center justify-center w-10 h-10 rounded-lg bg-black text-gray-100 transition-all duration-150 border border-gray-600 hover:bg-primary hover:-translate-y-0.5"
       >
         <SocialIcon icon={social.icon} />

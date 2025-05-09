@@ -1,3 +1,0 @@
-User-agent: *
-
-Sitemap: https://www.dracu.dev/sitemap-index.xml

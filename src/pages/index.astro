@@ -1,0 +1,78 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../components/layout/BaseLayout.astro";
+import Container from "../components/ui/Container.astro";
+
+const siteConfig = await getEntry("site", "home");
+if (!siteConfig) {
+  throw new Error("Site configuration not found");
+}
+
+const site = siteConfig.data;
+---
+
+<BaseLayout title={`${site.name} - Portfolio`} description={site.introduction}>
+  <Container>
+    <section class="hero">
+      <h1>{site.name}</h1>
+      <figure>
+        <img
+          src={site.avatar}
+          alt={site.name}
+          loading="lazy"
+          class="w-48 h-48"
+        />
+      </figure>
+      <p class="subtitle">{site.title}</p>
+      <p class="introduction">{site.introduction}</p>
+      <p class="introduction">{site.description}</p>
+
+      {
+        site.socialLinks && (
+          <div class="social-links">
+            {site.socialLinks.map(({ platform, url }) => (
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                {platform}
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </section>
+  </Container>
+</BaseLayout>
+
+<style>
+  main {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .hero {
+    padding: 4rem 0;
+  }
+
+  .introduction {
+    margin: 1.5rem 0;
+    opacity: 0.9;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 640px) {
+    main {
+      padding: 1rem 0;
+    }
+
+    .hero {
+      padding: 3rem 0;
+    }
+  }
+</style>

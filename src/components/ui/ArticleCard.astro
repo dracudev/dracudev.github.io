@@ -3,18 +3,15 @@ interface Props {
   title: string;
   description?: string;
   url: string;
-  date?: Date;
   tags?: string[];
 }
 
-const { title, description, url, date, tags } = Astro.props;
-import { formatDate } from "../../utils/date";
+const { title, description, url, tags } = Astro.props;
 ---
 
 <article>
   <div class="title-row">
     <a href={url} target="_blank">{title}</a>
-    {date && <time datetime={date.toISOString()}>{formatDate(date)}</time>}
   </div>
   <p class="muted-text">{description}</p>
   {

@@ -16,6 +16,36 @@ const projects = defineCollection({
   }),
 });
 
+const experience = defineCollection({
+  loader: glob({
+    pattern: "**/*.md",
+    base: "./src/content/experience",
+  }),
+  schema: z.object({
+    title: z.string(),
+    logo: z.string(),
+    description: z.string(),
+    startDate: z.coerce.date(),
+    endDate: z.coerce.date().optional(),
+    current: z.boolean().optional().default(false),
+  }),
+});
+
+const education = defineCollection({
+  loader: glob({
+    pattern: "**/*.md",
+    base: "./src/content/experience",
+  }),
+  schema: z.object({
+    title: z.string(),
+    logo: z.string(),
+    description: z.string(),
+    startDate: z.coerce.date(),
+    endDate: z.coerce.date().optional(),
+    current: z.boolean().optional().default(false),
+  }),
+});
+
 const site = defineCollection({
   loader: file("./src/content/site/config.json"),
   schema: z.object({
@@ -37,5 +67,7 @@ const site = defineCollection({
 
 export const collections = {
   projects,
+  experience,
+  education,
   site,
 };

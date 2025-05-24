@@ -5,19 +5,19 @@ import BaseLayout from "../../components/layout/BaseLayout.astro";
 import BaseHero from "../../components/shared/BaseHero.astro";
 import Container from "../../components/ui/Container.astro";
 
-type Education = CollectionEntry<"experience">;
+type Education = CollectionEntry<"education">;
 
 const education = await getCollection("education");
 ---
 
 <BaseLayout
   title="Education"
-  description="Highlights from my career and the roles that shaped me"
+  description="A look at my educational journey and learning experiences"
 >
   <Container>
     <BaseHero
-      title="Work Experience"
-      description="Highlights from my career and the roles that shaped me"
+      title="Education"
+      description="A look at my educational journey and learning experiences"
     />
   </Container>
 </BaseLayout>

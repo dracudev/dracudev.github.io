@@ -5,20 +5,7 @@
     "title": "Frontend Developer | Digital Marketer",
     "introduction": "Front-End developer focused on creating dynamic web applications with React, TypeScript, and Tailwind, taking care of every detail to ensure clean, scalable, and efficient code.",
     "description": "I also have a background in digital marketing and UX, which underscores the importance of developing applications that not only work effectively but also provide an intuitive and optimized user experience.",
-    "sections": {
-      "blog": {
-        "title": "Writing",
-        "viewAllText": "View all posts"
-      },
-      "projects": {
-        "title": "Projects",
-        "viewAllText": "View all projects"
-      },
-      "experience": {
-        "title": "Experience",
-        "viewAllText": "View full résumé"
-      }
-    },
+
     "socialLinks": [
       {
         "platform": "GitHub",

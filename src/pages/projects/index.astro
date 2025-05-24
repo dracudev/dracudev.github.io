@@ -1,0 +1,58 @@
+---
+import ArticleCard from "../../components/ui/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../../components/layout/BaseLayout.astro";
+import Categories from "../../components/shared/Categories.astro";
+import BaseHero from "../../components/shared/BaseHero.astro";
+import Container from "../../components/ui/Container.astro";
+import ContentList from "../../components/shared/ContentList.astro";
+
+type Project = CollectionEntry<"projects">;
+
+const projects = await getCollection("projects");
+
+// Extract all unique techs from projects and flatten the array
+const techs = [
+  ...new Set(projects.flatMap((project: Project) => project.data.techs || [])),
+].sort();
+
+// Featured projects first, then by title
+const sortedProjects = projects.sort((a: Project, b: Project) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return a.data.title.localeCompare(b.data.title);
+});
+---
+
+<BaseLayout
+  title="Projects"
+  description="Crafted with code to solve real problems"
+>
+  <Container>
+    <BaseHero
+      title="Projects"
+      description="Crafted with code to solve real problems"
+    />
+
+    <Categories
+      categories={techs}
+      currentPath={Astro.url.pathname}
+      basePath="projects"
+    />
+
+    <ContentList>
+      <!-- url={`/projects/${project.id}`} -->
+      {
+        sortedProjects.map((project) => (
+          <ArticleCard
+            title={project.data.title}
+            description={project.data.description}
+            url={project.data.url ?? ""}
+            tags={project.data.techs}
+          />
+        ))
+      }
+    </ContentList>
+  </Container>
+</BaseLayout>

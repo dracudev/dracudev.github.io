@@ -1,0 +1,72 @@
+---
+import ArticleCard from "../../components/ui/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../../components/layout/BaseLayout.astro";
+import Categories from "../../components/shared/Categories.astro";
+import BaseHero from "../../components/shared/BaseHero.astro";
+import Container from "../../components/ui/Container.astro";
+import ContentList from "../../components/shared/ContentList.astro";
+
+type Project = CollectionEntry<"projects">;
+
+export const getStaticPaths = (async () => {
+  const allProjects = await getCollection("projects");
+
+  // Get all unique techs
+  const allTechs: string[] = Array.from(
+    new Set(allProjects.flatMap((project: Project) => project.data.techs || []))
+  ).sort();
+
+  return allTechs.map((tech) => {
+    const techProjects = allProjects.filter(
+      (project: Project) =>
+        project.data.techs && project.data.techs.includes(tech)
+    );
+
+    // Sort by featured, then by title
+    const sortedProjects = techProjects.sort((a, b) => {
+      if (a.data.featured && !b.data.featured) return -1;
+      if (!a.data.featured && b.data.featured) return 1;
+      return a.data.title.localeCompare(b.data.title);
+    });
+
+    return {
+      params: { tech },
+      props: { techProjects: sortedProjects, allTechs },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { techProjects, allTechs } = Astro.props;
+const tech = Astro.params.tech;
+---
+
+<BaseLayout
+  title={`${tech} Projects`}
+  description={`Projects built with ${tech}`}
+>
+  <Container>
+    <BaseHero title="Projects" description={`Projects built with ${tech}`} />
+
+    <Categories
+      categories={allTechs}
+      currentPath={Astro.url.pathname}
+      basePath="projects"
+    />
+
+    <ContentList>
+      {
+        techProjects.map((project: Project) => (
+          <ArticleCard
+            title={project.data.title}
+            description={project.data.description}
+            url={`/projects/${project.id}`}
+            tags={project.data.techs}
+          />
+        ))
+      }
+    </ContentList>
+  </Container>
+</BaseLayout>

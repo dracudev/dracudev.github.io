@@ -1,0 +1,137 @@
+---
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../../components/layout/BaseLayout.astro";
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+// TODO: Improve projects section and its redirect (remove target _blank on ArticleCard), add images and information
+---
+
+<BaseLayout title={project.data.title} description={project.data.description}>
+  <main>
+    <article class="project">
+      <header>
+        <div class="metadata">
+          {
+            project.data.techs && project.data.techs.length > 0 && (
+              <div class="tags">
+                {project.data.techs.map((tech) => (
+                  <span class="tag">{tech}</span>
+                ))}
+              </div>
+            )
+          }
+          {project.data.featured && <span class="featured">Featured</span>}
+        </div>
+        <h1>{project.data.title}</h1>
+        <p class="description">{project.data.description}</p>
+        <a
+          href={project.data.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-link"
+        >
+          View Project
+        </a>
+        <a
+          href={project.data.repository}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-link"
+        >
+          View on GitHub
+        </a>
+      </header>
+      <div class="content">
+        <Content />
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .project {
+    margin-top: 2rem;
+  }
+
+  header {
+    margin-bottom: 2rem;
+  }
+
+  .metadata {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: var(--text-xs);
+    background-color: var(--accent-light);
+    color: var(--accent);
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  .featured {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-size: var(--text-xs);
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+  }
+
+  h1 {
+    margin-top: 0.5rem;
+  }
+
+  .description {
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+  }
+
+  .project-link {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .content {
+    line-height: 1.7;
+  }
+
+  @media (max-width: 640px) {
+    main {
+      padding: 1rem;
+    }
+  }
+</style>

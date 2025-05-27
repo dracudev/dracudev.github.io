@@ -34,7 +34,7 @@ const experience = defineCollection({
 const education = defineCollection({
   loader: glob({
     pattern: "**/*.md",
-    base: "./src/content/experience",
+    base: "./src/content/education",
   }),
   schema: z.object({
     title: z.string(),

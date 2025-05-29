@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../components/layout/BaseLayout.astro";
+import BaseHero from "../../components/shared/BaseHero.astro";
+import Container from "../../components/ui/Container.astro";
+import TimeLine from "../../components/ui/TimeLine";
+
+const experience = await getCollection("experience");
+---
+
+<BaseLayout
+  title="dracudev | Experience"
+  description="Highlights from my career and the roles that shaped me"
+>
+  <Container>
+    <BaseHero
+      title="Work Experience"
+      description="Highlights from my career and the roles that shaped me"
+    />
+
+    <TimeLine items={experience} />
+  </Container>
+</BaseLayout>

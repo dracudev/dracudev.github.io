@@ -23,8 +23,8 @@ const experience = defineCollection({
   }),
   schema: z.object({
     title: z.string(),
-    logo: z.string(),
-    description: z.string(),
+    logo: z.string().optional(),
+    description: z.array(z.string()),
     startDate: z.coerce.date(),
     endDate: z.coerce.date().optional(),
     current: z.boolean().optional().default(false),
@@ -38,8 +38,8 @@ const education = defineCollection({
   }),
   schema: z.object({
     title: z.string(),
-    logo: z.string(),
-    description: z.string(),
+    logo: z.string().optional(),
+    description: z.array(z.string()),
     startDate: z.coerce.date(),
     endDate: z.coerce.date().optional(),
     current: z.boolean().optional().default(false),

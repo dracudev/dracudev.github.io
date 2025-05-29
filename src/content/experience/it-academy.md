@@ -1,5 +1,5 @@
 ---
-title: "Intern at [IT Academy](https://www.barcelonactiva.cat/es/itacademy)"
+title: "Intern at [IT Academy - Barcelona Activa](https://www.barcelonactiva.cat/es/itacademy)"
 logo: "/images/companies/barcelonaactiva.svg"
 description:
   - "Collaborated on the development of an [educational wiki](https://ita-wiki-frontend-production.up.railway.app/) using Scrum methodology."

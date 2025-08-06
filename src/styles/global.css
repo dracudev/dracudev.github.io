@@ -306,6 +306,16 @@ img {
   border-radius: 50%;
 }
 
+/* Avatar specific styling */
+.hero figure img {
+  width: 12rem;
+  height: 12rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 40px rgba(139, 92, 246, 0.15);
+  object-fit: cover;
+}
+
 figure {
   margin: 2rem 0;
 }

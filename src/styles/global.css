@@ -69,6 +69,16 @@ body {
   overflow-x: hidden;
 }
 
+.particles-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .astro-code * {
   font-size: var(--text-xs);
 }
@@ -80,6 +90,7 @@ main {
   padding: 2rem 0;
   position: relative;
   overflow-x: hidden;
+  z-index: 1;
 }
 
 .nav-container {
@@ -142,7 +153,6 @@ body::before {
   perspective: 1000px;
   will-change: transform;
 }
-
 .bottom-glow {
   position: absolute;
   bottom: 0;

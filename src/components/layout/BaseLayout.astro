@@ -14,6 +14,7 @@ import interMediumWoff2 from "@fontsource/inter/files/inter-latin-500-normal.wof
 import robotoMonoRegularWoff2 from "@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff2?url";
 import { ClientRouter } from "astro:transitions";
 import Navigation from "../shared/Navigation.astro";
+import Particles from "../ui/Particles";
 
 interface Props {
   title: string;
@@ -106,6 +107,19 @@ const {
     </script>
   </head>
   <body>
+    <div class="particles-background" transition:persist="particles">
+      <Particles
+        particleColors={["#ffffff", "#ffffff"]}
+        particleCount={100}
+        particleSpread={10}
+        speed={0.06}
+        particleBaseSize={75}
+        moveParticlesOnHover={false}
+        alphaParticles={false}
+        disableRotation={false}
+        client:load
+      />
+    </div>
     <div class="top-glow" transition:persist></div>
     <main>
       <div class="nav-container">

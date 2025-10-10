@@ -8,6 +8,7 @@ import Categories from "../../components/shared/Categories.astro";
 import BaseHero from "../../components/shared/BaseHero.astro";
 import Container from "../../components/ui/Container.astro";
 import ContentList from "../../components/shared/ContentList.astro";
+import { getProjectOGImages } from "../../utils/og-image-cache.ts";
 
 type Project = CollectionEntry<"projects">;
 
@@ -41,6 +42,9 @@ export const getStaticPaths = (async () => {
 
 const { techProjects, allTechs } = Astro.props;
 const tech = Astro.params.tech;
+
+// Get cached OG images for all projects
+const ogImages = await getProjectOGImages();
 ---
 
 <BaseLayout
@@ -62,8 +66,9 @@ const tech = Astro.params.tech;
           <ArticleCard
             title={project.data.title}
             description={project.data.description}
-            url={`/projects/${project.id}`}
+            url={project.data.url ?? ""}
             tags={project.data.techs}
+            image={project.data.url ? ogImages[project.data.url] : null}
           />
         ))
       }

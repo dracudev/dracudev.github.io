@@ -1,17 +1,17 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../../.flowbite-react/class-list.json";
 
 @property --noise-opacity {
-  syntax: "<number>";
+  syntax: '<number>';
   initial-value: 0.1;
   inherits: false;
 }
 
 :root {
-  --font-primary: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  --font-mono: "Roboto Mono", Consolas, "Courier New", monospace;
+  --font-primary: 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+  --font-mono: 'Roboto Mono', Consolas, 'Courier New', monospace;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -112,7 +112,7 @@ main {
 }
 
 body::after {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   background-image: linear-gradient(
@@ -130,7 +130,7 @@ body::after {
 }
 
 body::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -5vh;
   left: 0;
@@ -237,7 +237,7 @@ a {
 }
 
 a:not(.category-link)::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -303,7 +303,6 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  border-radius: 50%;
 }
 
 /* Avatar specific styling */
@@ -311,9 +310,8 @@ img {
   width: 12rem;
   height: 12rem;
   border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05),
-    0 0 40px rgba(139, 92, 246, 0.15);
   object-fit: cover;
+  border-radius: 50%;
 }
 
 figure {

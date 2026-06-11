@@ -13,7 +13,7 @@ const site = siteConfig.data;
 
 <BaseLayout
   title={`dracudev | Javier Andreu | Front-End Developer`}
-  description={site.introduction}
+  description={site.introduction.join(". ")}
 >
   <Container>
     <section class="hero">
@@ -27,8 +27,13 @@ const site = siteConfig.data;
         />
       </figure>
       <p class="subtitle">{site.title}</p>
-      <p class="introduction">{site.introduction}</p>
-      <p class="introduction">{site.description}</p>
+      <p class="introduction" set:html={site.introduction.join("<br />")} />
+      {
+        site.introduction2 && (
+          <p class="introduction" set:html={site.introduction2.join("<br />")} />
+        )
+      }
+      <p class="introduction" set:html={site.description.join("<br />")} />
 
       {
         site.socialLinks && (

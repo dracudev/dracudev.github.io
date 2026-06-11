@@ -2,9 +2,10 @@
   "home": {
     "name": "Javier Andreu",
     "avatar": "/images/avatar.webp",
-    "title": "Frontend Developer | Digital Marketer",
-    "introduction": "Front-End developer focused on creating dynamic web applications with React, TypeScript, and Tailwind, taking care of every detail to ensure clean, scalable, and efficient code.",
-    "description": "I also have a background in digital marketing and UX, which underscores the importance of developing applications that not only work effectively but also provide an intuitive and optimized user experience.",
+    "title": "Web Developer | Digital Marketer",
+    "introduction": ["In the tech world, being bilingual is key.", "And I'm not talking about languages."],
+    "introduction2": ["Marketing focuses on conversion.", "Development focuses on implementation.", "And often, they don't understand each other."],
+    "description": ["With my background in marketing and UX, I understand business strategy.", "As a developer, I translate that strategy into clean, high-performance code."],
 
     "socialLinks": [
       {

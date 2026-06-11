@@ -29,6 +29,7 @@ const experience = defineCollection({
     startDate: z.coerce.date(),
     endDate: z.coerce.date().optional(),
     current: z.boolean().optional().default(false),
+    order: z.number().optional(),
   }),
 });
 
@@ -44,6 +45,7 @@ const education = defineCollection({
     startDate: z.coerce.date(),
     endDate: z.coerce.date().optional(),
     current: z.boolean().optional().default(false),
+    order: z.number().optional(),
   }),
 });
 
@@ -52,15 +54,16 @@ const site = defineCollection({
   schema: z.object({
     name: z.string(),
     title: z.string(),
-    introduction: z.string(),
-    description: z.string(),
+    introduction: z.array(z.string()),
+    introduction2: z.array(z.string()).optional(),
+    description: z.array(z.string()),
     avatar: z.string(),
     socialLinks: z
       .array(
         z.object({
           platform: z.string(),
           url: z.string(),
-        })
+        }),
       )
       .optional(),
   }),

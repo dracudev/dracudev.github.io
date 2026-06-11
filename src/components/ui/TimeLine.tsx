@@ -35,6 +35,9 @@ function parseMarkdownLinks(text: string) {
 
 export default function TimeLineReact({ items }: Props) {
   const sortedItems = [...items].sort((a, b) => {
+    const aOrder = a.data.order ?? Infinity;
+    const bOrder = b.data.order ?? Infinity;
+    if (aOrder !== bOrder) return aOrder - bOrder;
     return (
       new Date(b.data.startDate).getTime() -
       new Date(a.data.startDate).getTime()

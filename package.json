@@ -9,9 +9,6 @@
     "astro": "astro",
     "postinstall": "flowbite-react patch"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": ["@tailwindcss/oxide", "esbuild", "sharp"]
-  },
   "dependencies": {
     "@astrojs/react": "4.3.0",
     "@fontsource/inter": "5.2.5",
